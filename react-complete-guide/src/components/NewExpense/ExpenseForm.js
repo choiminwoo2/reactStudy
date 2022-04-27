@@ -42,16 +42,19 @@ const ExpenseForm = (props) => {
         const expenseData = {
             title: enteredTitle,
             amount : enteredAmount,
-            date : new Date(enteredDate)
+            date : new Date(enteredDate),
         }
-
         props.onSaveExpenseData(expenseData);
         console.log(expenseData);
-
         setEnteredAmount('');
         setEnteredDate('');
         setEnteredTitle('');
     }
+    //click 취소버튼
+    const cancelFormHandler = () =>{
+      props.onClickBtnStateHandler(true);
+    }
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -69,6 +72,7 @@ const ExpenseForm = (props) => {
         </div>
       </div>
       <div className="new-expense__actions">
+          <button type="submit" onClick={cancelFormHandler}>취소</button>
           <button type="submit">추가</button>
       </div>
     </form>

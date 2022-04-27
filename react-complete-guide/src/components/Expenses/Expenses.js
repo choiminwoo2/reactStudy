@@ -1,41 +1,29 @@
 import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
+import ExpensesList from './ExpensesList';
 import Card from "../UI/Card";
 import "./Expenses.css";
 import { useState } from "react";
 
 function Expenses({ expenses }) {
-  const [selectMenu,setSelectMenu] = useState('2020');
+  const [selectMenu, setSelectMenu] = useState("2020");
 
-  const MenuSelect = selectedYear =>{
-    console.log('extenses.js');
+  const MenuSelect = (selectedYear) => {
+    console.log("extenses.js");
     console.log(selectedYear);
     setSelectMenu(selectedYear);
   };
+  //힌트1 FILTER 메서드
+  //두번째 힌트, 너무 심각하게 생각하지 않아도 된다.
+  const filteredExpenses = expenses.filter((expense) => {
+    return expense.date.getFullYear().toString() === selectMenu;
+  });
+
   return (
     <div>
       <Card className="expenses">
-      <ExpensesFilter selected={selectMenu} onChangeSelect ={MenuSelect}/>
-        <ExpenseItem
-          title={expenses[0].title}
-          amount={expenses[0].amount}
-          date={expenses[0].date}
-        />
-        <ExpenseItem
-          title={expenses[1].title}
-          amount={expenses[1].amount}
-          date={expenses[1].date}
-        />
-        <ExpenseItem
-          title={expenses[2].title}
-          amount={expenses[2].amount}
-          date={expenses[2].date}
-        />
-        <ExpenseItem
-          title={expenses[3].title}
-          amount={expenses[3].amount}
-          date={expenses[3].date}
-        />
+        <ExpensesFilter selected={selectMenu} onChangeSelect={MenuSelect} />
+        <ExpensesList items={filteredExpenses}/>
       </Card>
     </div>
   );
