@@ -8,9 +8,7 @@
 * React.js
 * React-Router
 * Next.js
-* Redux
-* TypeScript
-* Jest(Test-Driven Development) 
+
 
 
 
