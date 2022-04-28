@@ -10,6 +10,7 @@
 * Next.js
 * Redux
 * TypeScript
+* Jest(Test-Driven Development) 
 
 
 
