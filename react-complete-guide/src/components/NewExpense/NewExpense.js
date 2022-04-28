@@ -20,7 +20,6 @@ const NewExpense = (props) =>{
         setBtnState(clickBtnState);
     }
 
-
     //직접 해결한 솔루션
     return <div className='new-expense'>
         {btnState ? <button onClick={addBtnClickHandler}>Add New Expense</button> :

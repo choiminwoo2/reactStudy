@@ -1,6 +1,6 @@
-import ExpenseItem from "./ExpenseItem";
 import ExpensesFilter from "./ExpensesFilter";
 import ExpensesList from './ExpensesList';
+import ExpensesChart from "./ExpensesChart";
 import Card from "../UI/Card";
 import "./Expenses.css";
 import { useState } from "react";
@@ -23,6 +23,7 @@ function Expenses({ expenses }) {
     <div>
       <Card className="expenses">
         <ExpensesFilter selected={selectMenu} onChangeSelect={MenuSelect} />
+        <ExpensesChart expensess={filteredExpenses}/>
         <ExpensesList items={filteredExpenses}/>
       </Card>
     </div>
