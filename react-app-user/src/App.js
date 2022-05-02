@@ -5,8 +5,8 @@ function App() {
   const [userData, setUserData] = useState([]);
 
   const listAddHandler = (data) => {
-    setUserData((curreuntData) => {
-      return [...curreuntData, data];
+    setUserData((prevData) => {
+      return [...prevData, data];
     });
   };
   return (
