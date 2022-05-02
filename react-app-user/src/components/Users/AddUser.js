@@ -39,9 +39,13 @@ const AddUser = (props) => {
   const ageChangeHandler = (e) => {
     setEnterdAge(e.target.value);
   };
+
+  const errorHandler = () =>{
+    setError(null);
+  }
   return (
     <div>
-      {error && <ErrorModal title={error.title} message={error.message} />}
+      {error && <ErrorModal title={error.title} message={error.message} onConfirm={errorHandler} />}
       <Card className={classes.input}>
         <form onSubmit={addUserHandler}>
           <label htmlFor="username">유저 이름</label>
@@ -51,7 +55,7 @@ const AddUser = (props) => {
             onChange={usernameChangeHandler}
             value={enteredName}
           />
-          <label htmlFor="age">생년</label>
+          <label htmlFor="age">나이</label>
           <input
             type="text"
             id="age"
