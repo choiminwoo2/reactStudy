@@ -2,11 +2,17 @@
 
 UI Card 컴포넌트와 Button 컴포넌트 만들기 및 Error 컴포넌트 생성
 --------------
-# React Hook useState()
+# React Hook 
+
+## useState()
 useState를 통한 양방향 통신 처리를 한 프로그래밍
 useState()의 기본값은 null
 
-객체 및 배열을 
+## useRef()
+useRef는 리액트를 사용하는 것이 아닌 실제 만들어진 DOM 객체에 직접적으로 접근하여 데이터를 수정하거나 삭제한다.
+
+## React Fragment
+react.Fragment는 JSX의 문법에서 컴포넌트는 하나의 루트 컴포넌트를 가질 것으로 정하는데 그 때, 사용하는 무의미하게 랜더링 된 DIV태그를 제거하기 위하여 사용한다.
 
 # 컴포넌트간 통신 처리
 --------------
