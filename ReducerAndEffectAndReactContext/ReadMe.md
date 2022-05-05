@@ -39,19 +39,21 @@ useImperativeHandle를 통해서 ref로 접근할 수 있는 외부에 사용가
 
  ## JSX에서 생성한 Context를 공급하는법
  JSX문법에서 사용하기 위해서는 컴포넌트처럼 사용해서 공급해줘야한다
+ ```javascript
  <ComponetName.Provider value={객체}>
     자손 컴포넌트들.
  </ComponetName.Provider>
-
+```
  ## JSX에서 공급받은 자손 컴포넌트에서 해당 CONTEXT 데이터를 사용하는 방법
 
  ### 컴포넌트로 사용하는 방법
+ ```javascript
 <AuthContext.Consumer>
 {(ctx) => { 
     return ( JSX코드 모두)
 }}
 </AuthContext.Consumer>
-
+```
 ### import로 사용하는 방법
 const ctx = useContext(AuthContext);
 
