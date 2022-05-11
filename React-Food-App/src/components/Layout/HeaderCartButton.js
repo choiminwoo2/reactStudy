@@ -17,13 +17,17 @@ const HeaderCartButton= props => {
    const btnClasses = `${styles.button} ${btnIsHigtlighted ? styles.bump : ''}`;
 
    useEffect(()=>{
-    if(cartCtx.items.length === 0){
+    if(items.length === 0){
         return;
     }
     setBtnIsHigtlighted(true);
-   },[cartCtx])
 
-    return <button className={styles.button} onClick={props.onClick}>
+    setTimeout(()=>{
+        setBtnIsHigtlighted(false)
+    },300)
+   },[items])
+
+    return <button className={btnClasses} onClick={props.onClick}>
         <span className={styles.icon}>
             <CartIcon />
         </span>
