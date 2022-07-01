@@ -1,0 +1,17 @@
+{
+  "name": "redux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "redux-demo.js",
+  "dependencies": {
+    "react-redux": "^8.0.2",
+    "redux": "^4.2.0",
+    "regenerator-runtime": "^0.13.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
