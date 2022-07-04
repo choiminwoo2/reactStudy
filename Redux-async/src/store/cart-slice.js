@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialCartState = { items: [], totalQuantity: 0, totalAmount: 0 };
+const initialCartState = { items: [], totalQuantity: 0 };
 
 const CartSlice = createSlice({
   name: "cart",
@@ -37,5 +37,11 @@ const CartSlice = createSlice({
     },
   },
 });
+export const sendCartData = (cart) =>{
+    return async (dispatch) => {
+        dispatch();
+    }
+}
+
 export const cartActions = CartSlice.actions;
 export default CartSlice;
