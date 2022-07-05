@@ -1,59 +1,92 @@
-import Cart from "./components/Cart/Cart";
-import Layout from "./components/Layout/Layout";
-import Products from "./components/Shop/Products";
-import { useSelector, useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { uiActions } from "./store/ui-slice";
-let notSendData = true;
+import { Fragment, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+
+import Cart from './components/Cart/Cart';
+import Layout from './components/Layout/Layout';
+import Products from './components/Shop/Products';
+import { sendCartData, fetchCartData } from './store/cart-actions';
+import Notification from './components/UI/Notification';
+
+let isInitial = true;
 
 function App() {
+  const dispatch = useDispatch();
   const showCart = useSelector((state) => state.ui.cartIsVisible);
   const cart = useSelector((state) => state.cart);
-  const dispatch = useDispatch();
-  useEffect(() => {
-    const sendCartData = async () => {
-      if (notSendData) {
-        notSendData = false;
-        return;
-      }
+  const notification = useSelector((state) => state.ui.notification);
 
-      dispatch(uiActions.showNotification({
-        status : 'pending',
-        title: 'Sending...',
-        message : 'Sending Data...'
-      }))
-      const response = await fetch("https://valid-song-248113-default-rtdb.firebaseio.com/cart.json", {
-        method: "PUT",
-        body: JSON.stringify(cart),
-      });
-      if(!response.ok){
-        throw new Error('Faild Send Data');
-      }
+  useEffect(()=>{
+    dispatch(fetchCartData());
+  },[dispatch])
+   useEffect(() => {
+  //   const sendCartData = async () => {
+    //   console.log("sending")
+    //   dispatch(
+    //     uiActions.showNotification({
+    //       status: 'pending',
+    //       title: 'Sending...',
+    //       message: 'Sending cart data!',
+    //     })
+    //   );
+    //   const response = await fetch(
+    //     "https://valid-song-248113-default-rtdb.firebaseio.com/cart.json",
+    //     {
+    //       method: 'PUT',
+    //       body: JSON.stringify(cart),
+    //     }
+    //   );
 
-      dispatch(
-        uiActions.showNotification({
-          status: "successs",
-          title: "Successs...",
-          message: "데이터 보내기 성공",
-        })
-      );
-    };
-    sendCartData()
-    .catch( (err) =>{
-      dispatch(
-        uiActions.showNotification({
-          status: "successs",
-          title: "Successs...",
-          message: "데이터 보내기 성공",
-        })
-      )
-    });
-  }, [cart, dispatch]);
+    //   if (!response.ok) {
+    //     throw new Error('Sending cart data failed.');
+    //   }
+    //   console.log("send ok!")
+    //   dispatch(
+    //     uiActions.showNotification({
+    //       status: 'success',
+    //       title: 'Success!',
+    //       message: 'Sent cart data successfully!',
+    //     })
+    //   );
+    // };
+
+    // if (isInitial) {
+    //   isInitial = false;
+    //   return;
+    // }
+
+    // sendCartData().catch((error) => {
+    //   dispatch(
+    //     uiActions.showNotification({
+    //       status: 'error',
+    //       title: 'Error!',
+    //       message: 'Sending cart data failed!',
+    //     })
+    //   );
+    // });
+    if(isInitial){
+      isInitial = false;
+      return;
+    }
+    if(cart.changed){
+      dispatch(sendCartData(cart));
+    }
+  }
+  , [cart,dispatch]);
+
   return (
-    <Layout>
-      {showCart && <Cart />}
-      <Products />
-    </Layout>
+    <Fragment>
+      {notification && (
+        <Notification
+          status={notification.status}
+          title={notification.title}
+          message={notification.message}
+        />
+      )}
+      <Layout>
+        {showCart && <Cart />}
+        <Products />
+      </Layout>
+    </Fragment>
   );
 }
 
