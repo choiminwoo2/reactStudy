@@ -4,7 +4,7 @@ SPA(Single Page Application) 에서 하나의 페이지를 사용하여 랜더�
 이동한 것처럼 보이게 만들어 준다.
 
 # react-router-dom  version 5
-####  <Swith> 를 통해 경로가 중복된 라우터가 모두 동작하는 것을 방지한다.
+####  '<Swith>' 를 통해 경로가 중복된 라우터가 모두 동작하는 것을 방지한다.
     1. 리액트 라우터에서 경로가 같다는건 /product /product/:id 시작경로만 같다면 같은 주소라고 생각한다.
     2. ex) 이때 해결을 위해서 Swith를 사용하면 하나의 경로만 활성화 할 수 있도록 Swith를 사용한다.
 #### <Route path='' exact>Child Componenet </Route>
